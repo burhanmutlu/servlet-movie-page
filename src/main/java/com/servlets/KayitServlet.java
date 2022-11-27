@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.dao.abstracts.KullaniciDAO;
+import com.entity.Kisi;
+
 /**
  * Servlet implementation class KayitServlet
  */
@@ -26,11 +29,18 @@ public class KayitServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String kullaniciAdi = request.getParameter("kullaniciadi");
-		String sifre = request.getParameter("sifre");
+		Kisi kullanici = new Kisi(request.getParameter("kullaniciadi"), request.getParameter("sifre"));
 		
-		
-		
+		boolean k = new com.dao.KullaniciDAO().kullaniciKayit(kullanici);
+
+		if (k) {
+			request.getSession().setAttribute("kullanici", kullanici);
+			response.sendRedirect("index.jsp");
+		} else {
+			String mesaj = "tekrar deneyiniz";
+			request.setAttribute("mesaj", mesaj);
+			request.getRequestDispatcher("uyekayit.jsp").forward(request, response);
+		}
 
 		
 	}

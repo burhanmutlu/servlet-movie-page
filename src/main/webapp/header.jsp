@@ -31,10 +31,11 @@
 		<c:if test="${not empty kullanici }">
 			<a href="uyecikis">Üye Çıkışı</a>&nbsp;&nbsp;&nbsp;
 			<a href="guvenli/filmekle.jsp">Film Ekle</a>&nbsp;&nbsp;&nbsp;
+			<a href="hesapsil">Hesabını Sil</a>&nbsp;&nbsp;&nbsp;
 		</c:if>
 		
 		<c:if test="${not empty kullanici }" >
-			<span>merhaba ${kullanici}</span>
+			<span>merhaba ${kullanici.kullaniciAdi}</span>
 		</c:if>
 	</div>
 	

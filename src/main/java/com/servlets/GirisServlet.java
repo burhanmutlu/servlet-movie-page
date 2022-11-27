@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.dao.abstracts.KullaniciDAO;
+import com.entity.Kisi;
 
 /**
  * Servlet implementation class GirisServlet
@@ -30,11 +31,9 @@ public class GirisServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String kullanici = request.getParameter("kullaniciadi");
-		String sifre = request.getParameter("sifre");
+		Kisi kullanici = new Kisi(request.getParameter("kullaniciadi"), request.getParameter("sifre"));
 		
-		boolean k = new com.dao.KullaniciDAO().kullaniciKontrol(kullanici, sifre);
-	
+		boolean k = new com.dao.KullaniciDAO().kullaniciKontrol(kullanici);
 		
 		if (k) {
 			request.getSession().setAttribute("kullanici", kullanici);
