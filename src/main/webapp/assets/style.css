@@ -1,0 +1,25 @@
+@charset "UTF-8";
+div#contentmain {
+    background: #a6e2ff;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px 0px;
+    padding: 27px 0px;
+}
+
+div#menu {
+    font-size: 18px;
+}
+
+div#main {
+    background: #edf4ff;
+    color: blue;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 14px;
+}
+
+

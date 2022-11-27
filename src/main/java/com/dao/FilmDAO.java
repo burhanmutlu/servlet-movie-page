@@ -19,14 +19,17 @@ public class FilmDAO {
 		try {
 			
 			Connection conn = ConnectionManager.getConnection();
-			String sorgu = "select f.id, f.ad, f.sene, k.id as katid, k.ad as katad, y.id as yonid, y.ad as yonad from film f inner join kategori k on f.kategori_id=k.id inner join yonetmen y on f.yonetmen_id=y.id where f.id=?";
+			StringBuilder sorgu = new StringBuilder();
+			sorgu.append("select f.id, f.ad, f.sene, k.id as katid, k.ad as katad, y.id as yonid, ");
+			sorgu.append("y.ad as yonad from film f inner join kategori k on f.kategori_id=k.id ");
+			sorgu.append("inner join yonetmen y on f.yonetmen_id=y.id where f.id=?");
 			
-			PreparedStatement psmt = conn.prepareStatement(sorgu);
+			PreparedStatement psmt = conn.prepareStatement(sorgu.toString());
 			psmt.setInt(1, filmid);
 			ResultSet rs = psmt.executeQuery();
 			
 			while(rs.next()) {
-				Yonetmen yonetmen = new Yonetmen(rs.getInt("yonid"), rs.getString("ad"));
+				Yonetmen yonetmen = new Yonetmen(rs.getInt("yonid"), rs.getString("yonad"));
 				Kategori kategori = new Kategori(rs.getInt("katid"), rs.getString("katad"));
 				f = new Film( rs.getInt("id"), rs.getInt("sene"), rs.getString("ad"), yonetmen, kategori );
 			}
@@ -41,12 +44,7 @@ public class FilmDAO {
 		return f; 
 		
 	}
-	
-	
-	
-	
-	
-	
+		
 	public ArrayList<Film> butunFilmleriGetir() {
 		 
 		ArrayList<Film> filmler = new ArrayList<Film>();
@@ -73,8 +71,7 @@ public class FilmDAO {
 		 */
 		return filmler;  
 	}
-	
-	
+
 	public ArrayList<Film> kategoriyeAitFilmleriGetir(int kategoriid) {
 		ArrayList<Film> filmler = new ArrayList<Film>();
 		
@@ -102,5 +99,4 @@ public class FilmDAO {
 		return filmler;
 	}
 	
-
 }

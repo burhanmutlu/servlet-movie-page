@@ -3,7 +3,7 @@
 </div>
 	</div>
 	<div id="footer">
-		&copy;2011 Uludag Univ.
+		&copy;ortogon eğitimden altuğ tanaltay hocama teşekkür ederim
 	</div>
 </div>
 </body>

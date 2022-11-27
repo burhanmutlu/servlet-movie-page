@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.dao.FilmDAO;
 import com.entity.Film;
@@ -33,10 +35,12 @@ public class FavoriEkleServlet extends HttpServlet {
 		int filmid = Integer.valueOf(request.getParameter("filmid"));
 		
 		Film film = new FilmDAO().filmAyrintiGetir(filmid);
-		
-		ArrayList<Film> favoriler = new ArrayList<Film>();
+		// bunun yerine set koy tekrar etmesin ve hash code u override et
+		//ArrayList<Film> favoriler = new ArrayList<Film>();
+		HashSet<Film> favoriler = new HashSet<Film>();
 		if (request.getSession().getAttribute("favoriler") != null) {
-			favoriler = (ArrayList<Film>)request.getSession().getAttribute("favoriler");
+			//favoriler = (ArrayList<Film>)request.getSession().getAttribute("favoriler");
+			favoriler = (HashSet<Film>)request.getSession().getAttribute("favoriler");
 		}
 		
 		favoriler.add(film);
@@ -52,5 +56,15 @@ public class FavoriEkleServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	
+	@Override
+	public int hashCode() {
+		return this.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
 }

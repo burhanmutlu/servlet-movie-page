@@ -34,4 +34,49 @@
     <servlet-name>FavoriEkleServlet</servlet-name>
     <url-pattern>/favoriekle</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GirisServlet</display-name>
+    <servlet-name>GirisServlet</servlet-name>
+    <servlet-class>com.servlets.GirisServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GirisServlet</servlet-name>
+    <url-pattern>/giris</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UyeCikisServlet</display-name>
+    <servlet-name>UyeCikisServlet</servlet-name>
+    <servlet-class>com.servlets.UyeCikisServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UyeCikisServlet</servlet-name>
+    <url-pattern>/uyecikis</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>GuvenlikFiltresi</display-name>
+    <filter-name>GuvenlikFiltresi</filter-name>
+    <filter-class>com.filters.GuvenlikFiltre</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>GuvenlikFiltresi</filter-name>
+    <url-pattern>/guvenli/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+  <listener>
+    <listener-class>com.listeners.UygulamaDinleyici</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>KayitServlet</display-name>
+    <servlet-name>KayitServlet</servlet-name>
+    <servlet-class>com.servlets.KayitServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KayitServlet</servlet-name>
+    <url-pattern>/kayit</url-pattern>
+  </servlet-mapping>
 </web-app>
