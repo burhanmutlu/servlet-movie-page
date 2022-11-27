@@ -29,6 +29,7 @@
 	
 	<div id="contentmain">
 		<div id="menu">
+		<h4>Kategoriler</h4>
 			<c:forEach items="${kategoriler}" var="kategori">
 			
 				<a href="filmler?katid=${kategori.getId()}">${kategori.getAd()}</a><br>
@@ -36,5 +37,14 @@
 			</c:forEach>
 			
 		<br><hr>
+		<c:if test="${not empty favoriler}">
+			<h4>Favoriler</h4>
+			<c:forEach items="${favoriler}" var="film">
+				<a href="filmler?katid=${kategori.id }">${film.ad }</a><br>
+			</c:forEach>
+		</c:if>
+		
+		
+		
 		</div>
 		<div id="content">

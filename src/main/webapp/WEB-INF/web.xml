@@ -24,4 +24,14 @@
     <servlet-name>FilmAyrintiServlet</servlet-name>
     <url-pattern>/filmdetay</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FavoriEkleServlet</display-name>
+    <servlet-name>FavoriEkleServlet</servlet-name>
+    <servlet-class>com.servlets.FavoriEkleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FavoriEkleServlet</servlet-name>
+    <url-pattern>/favoriekle</url-pattern>
+  </servlet-mapping>
 </web-app>

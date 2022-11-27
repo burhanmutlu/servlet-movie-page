@@ -19,7 +19,7 @@ public class FilmDAO {
 		try {
 			
 			Connection conn = ConnectionManager.getConnection();
-			String sorgu = "select * from film where f.id=?";
+			String sorgu = "select f.id, f.ad, f.sene, k.id as katid, k.ad as katad, y.id as yonid, y.ad as yonad from film f inner join kategori k on f.kategori_id=k.id inner join yonetmen y on f.yonetmen_id=y.id where f.id=?";
 			
 			PreparedStatement psmt = conn.prepareStatement(sorgu);
 			psmt.setInt(1, filmid);
