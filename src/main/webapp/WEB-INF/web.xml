@@ -79,4 +79,24 @@
     <servlet-name>KayitServlet</servlet-name>
     <url-pattern>/kayit</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KullaniciSilServlet</display-name>
+    <servlet-name>KullaniciSilServlet</servlet-name>
+    <servlet-class>com.servlets.KullaniciSilServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KullaniciSilServlet</servlet-name>
+    <url-pattern>/guvenli/hesapsil</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FilmEkleServlet</display-name>
+    <servlet-name>FilmEkleServlet</servlet-name>
+    <servlet-class>com.servlets.FilmEkleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FilmEkleServlet</servlet-name>
+    <url-pattern>/filmekle</url-pattern>
+  </servlet-mapping>
 </web-app>

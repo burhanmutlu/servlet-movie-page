@@ -5,10 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import com.entity.Kategori;
 
-public class KategoriDAO {
+public class KategoriDAO implements com.dao.abstracts.KategoriDAO{
+	
 	public ArrayList<Kategori> butunKategorileriGetir() {
 		
 		ArrayList<Kategori> kategoriler = new ArrayList<Kategori>();
@@ -31,6 +31,44 @@ public class KategoriDAO {
 		}
 		
 		return kategoriler;
+	}
+
+	public boolean yeniKategoriEkle(Kategori k) {
+		try {
+			
+			Connection conn = ConnectionManager.getConnection();
+			String sorgu = "INSERT INTO `kategori` (`ad`) VALUES (?)";
+			
+			PreparedStatement psmt = conn.prepareStatement(sorgu);
+			psmt.setString(1, k.getAd());
+			
+			psmt.executeUpdate();
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public int getSonKategoriId() {
+		try {
+			
+			Connection conn = ConnectionManager.getConnection();
+			String sorgu = "select  COUNT(id) from kategori";
+			
+			PreparedStatement psmt = conn.prepareStatement(sorgu);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			while(rs.next()) {	
+				return rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 } 
 

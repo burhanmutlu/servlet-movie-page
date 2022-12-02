@@ -73,6 +73,10 @@ public class Film {
 		return this.id + " - "+ this.ad + " - " + this.sene;
 	}
 	
+	public void display() {
+		System.out.println("id:" +id + "yonetmen:"+yonetmen.getId() + "kategori:"+kategori.getId() + "filmad:" +ad+ "sene:"+ sene); 
+	}
+	
 	
 
 }

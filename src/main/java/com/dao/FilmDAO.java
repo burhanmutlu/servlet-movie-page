@@ -10,7 +10,7 @@ import com.entity.Film;
 import com.entity.Kategori;
 import com.entity.Yonetmen;
 
-public class FilmDAO {
+public class FilmDAO implements com.dao.abstracts.FilmDAO {
 	
 	public Film filmAyrintiGetir(int filmid) {
 		
@@ -37,10 +37,7 @@ public class FilmDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		/**
-		 * @return  ArrayList<Film> filmler
-		 */
+
 		return f; 
 		
 	}
@@ -65,10 +62,7 @@ public class FilmDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		/**
-		 * @return  ArrayList<Film> filmler
-		 */
+
 		return filmler;  
 	}
 
@@ -97,6 +91,55 @@ public class FilmDAO {
 		}
 		
 		return filmler;
+	}
+	
+	
+	public boolean yeniFilmEkle(Film f) {
+		
+		try {
+			
+			Connection conn = ConnectionManager.getConnection();
+			String sorgu = "INSERT INTO `film` (`ad`, `sene`, `kategori_id`, `yonetmen_id`) VALUES (?, ?, ?, ?)";
+			
+			KategoriDAO katdao = new KategoriDAO();
+			katdao.yeniKategoriEkle(f.getKategori());
+			
+			YonetmenDAO yondao = new YonetmenDAO();
+			yondao.yeniYonetmenEkle(f.getYonetmen());
+			
+			PreparedStatement psmt = conn.prepareStatement(sorgu);
+			psmt.setString(1, f.getAd());
+			psmt.setInt(2, f.getSene() );
+			psmt.setInt(3, katdao.getSonKategoriId());
+			psmt.setInt(4, yondao.getSonYonetmenId());
+			
+			psmt.executeUpdate();
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean yeniFavoriEkle(Film f, int hesapId) {
+		
+		try {
+			
+			Connection conn = ConnectionManager.getConnection();
+			String sorgu = "INSERT INTO `favori` (`ad`, `hesap_id`) VALUES (?,?)";
+			
+			PreparedStatement psmt = conn.prepareStatement(sorgu);
+			psmt.setString(1, f.getAd());
+			psmt.setInt(2, hesapId );
+		
+			psmt.executeUpdate();
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }

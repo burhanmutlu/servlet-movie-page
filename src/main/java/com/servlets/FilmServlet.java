@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import com.dao.FilmDAO;
 import com.entity.Film;
 
-/**
- * Servlet implementation class FilmlerServlet
- */
 public class FilmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      

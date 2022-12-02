@@ -30,6 +30,4 @@ public class Yonetmen {
 		this.ad = ad;
 	}
 	
-	
-
 }

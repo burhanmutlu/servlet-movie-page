@@ -10,6 +10,10 @@ public interface KullaniciDAO {
 	
 	public boolean kullaniciKayit(Kisi k);
 	
+	public boolean kullaniciSil(Kisi k);
+	
+	public int getKullaniciHesapId(Kisi k);
+	
 
 
 }

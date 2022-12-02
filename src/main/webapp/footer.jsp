@@ -6,5 +6,7 @@
 		&copy;ortogon eğitimden altuğ tanaltay hocama teşekkür ederim
 	</div>
 </div>
+<script src="${rootPath}/assets/index.js"></script>
+</script>
 </body>
 </html>

@@ -1,8 +1,6 @@
 package com.servlets;
 
-
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,23 +9,9 @@ import java.io.IOException;
 import com.dao.abstracts.KullaniciDAO;
 import com.entity.Kisi;
 
-/**
- * Servlet implementation class GirisServlet
- */
 public class GirisServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GirisServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -36,6 +20,8 @@ public class GirisServlet extends HttpServlet {
 		boolean k = new com.dao.KullaniciDAO().kullaniciKontrol(kullanici);
 		
 		if (k) {
+			KullaniciDAO kdao = new com.dao.KullaniciDAO();
+			kullanici.setId( kdao.getKullaniciHesapId(kullanici) );
 			request.getSession().setAttribute("kullanici", kullanici);
 			response.sendRedirect("index.jsp");
 		} else {
@@ -46,9 +32,6 @@ public class GirisServlet extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
